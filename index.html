@@ -1,4 +1,3 @@
-<script src="https://app.secureprivacy.ai/script/6a80baf9f96211191254f932.js"></script>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -12,9 +11,15 @@
 <meta property="og:locale" content="ar_SA">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<!-- ⚙️ بدّل هذين السطرين عند شراء الدومين -->
+<meta property="og:site_name" content="DaScaper">
+<!-- ⚙️ عند شراء الدومين بدّل الأربعة أسطر التالية فقط -->
 <meta property="og:url" content="https://dascaper.pages.dev/">
 <link rel="canonical" href="https://dascaper.pages.dev/">
+<meta property="og:image" content="https://dascaper.pages.dev/og.png">
+<meta name="twitter:image" content="https://dascaper.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DaScaper — صفحات هبوط تحوّل الزائر إلى عميل">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -1290,6 +1295,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:700;letter-spacing:-0.01em}
           <li><a href="#contact">نموذج التواصل</a></li>
           <li><a href="#" id="waFoot" target="_blank" rel="noopener">واتساب</a></li>
           <li><a href="#" id="mailFoot">البريد الإلكتروني</a></li>
+          <li><a href="/privacy.html">سياسة الخصوصية</a></li>
           <li><span class="muted">الرياض والقصيم</span></li>
         </ul>
       </div>
@@ -1485,6 +1491,9 @@ const LB = (() => {
     dsc.textContent  = data.desc || '';
     list.innerHTML   = (data.points || []).map(p => `<li>${tick}<span>${p}</span></li>`).join('');
     cta.style.display = data.showCta === false ? 'none' : 'inline-flex';
+    cta.innerHTML = (data.ctaLabel || 'أبي صفحة مثل هذي') + ' <span class="arw">←</span>';
+    cta.href = data.ctaHref || '#contact';
+    cta.target = data.ctaHref ? '_blank' : '';
     $('#lbBack').textContent = data.backLabel || 'رجوع للنماذج';
 
     box.classList.add('is-open');
@@ -1524,7 +1533,8 @@ const LB = (() => {
 $('#privacyLink').addEventListener('click', e => {
   e.preventDefault();
   LB.open({
-    showArt: false, showCta: false, backLabel: 'فهمت، إغلاق',
+    showArt: false, backLabel: 'فهمت، إغلاق',
+    ctaLabel: 'اقرأ السياسة الكاملة', ctaHref: '/privacy.html',
     kind: 'الخصوصية',
     title: 'كيف نتعامل مع بياناتك',
     desc: 'نجمع أقل قدر ممكن من البيانات، ولغرض واحد فقط: الرد على طلبك.',
@@ -1538,7 +1548,7 @@ $('#privacyLink').addEventListener('click', e => {
         ? 'نستخدم Google Analytics لقياس أداء الصفحة (عدد الزيارات ومصدرها). لا يربط هذا القياس باسمك ولا برقمك، ويمكنك تعطيله من إعدادات متصفحك.'
         : 'لا نستخدم أي أداة تتبّع أو تحليلات على هذه الصفحة.',
       'لك الحق في الاطلاع على بياناتك أو تصحيحها أو طلب إتلافها أو سحب موافقتك في أي وقت.',
-      'راسلنا على ' + CONFIG.email + ' وسنستجيب خلال ٣٠ يوماً كحد أقصى.'
+      'راسلنا على ' + CONFIG.email + ' وسنستجيب خلال ٣٠ يوماً كحد أقصى — وعملياً خلال يوم عمل واحد.'
     ]
   });
 });
